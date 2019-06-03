@@ -1,5 +1,6 @@
+# vue-cli-plugin-pumelo-tea
 
-[![NPM](https://nodei.co/npm/vue-cli-plugin-pumelo-tea.png)](https://nodei.co/npm/vue-cli-plugin-pumelo-tea/)
+
 
 ### 使用preset创建项目
 ```
