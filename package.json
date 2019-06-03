@@ -1,0 +1,21 @@
+{
+  "name": "vue-cli-plugin-pumelo-tea",
+  "version": "1.0.18",
+  "description": "Custom templates for Vue CLI 3",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/natee/vue-cli-plugin-custom-tpl.git"
+  },
+  "keywords": [
+    "vue",
+    "cli",
+    "custom",
+    "template",
+    "plugin"
+  ],
+  "homepage": "https://github.com/natee/vue-cli-plugin-custom-tpl#readme",
+  "author": "Zhao Ke <kerncink@gmail.com>",
+  "license": "MIT"
+}
