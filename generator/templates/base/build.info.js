@@ -52,7 +52,7 @@ let fs = require("fs")
 let gitHEAD = fs.readFileSync('.git/HEAD', 'utf-8').trim() // ref: refs/heads/develop
 let ref = gitHEAD.split(': ')[1] // refs/heads/develop
 let gitVersion = ''
-let branch = gitHEAD.split('/')[2] // 环境：develop
+let branch = gitHEAD.replace('ref: refs/heads/','') // 环境：develop
 if (fsExistsSync('.git/'+ref)) {
   gitVersion = fs.readFileSync('.git/' + ref, 'utf-8').trim() // git版本号，例如：6ceb0ab5059d01fd444cf4e78467cc2dd1184a66
   let gitCommitVersion = branch + ': ' + gitVersion  // 例如dev环境: "develop: 6ceb0ab5059d01fd444cf4e78467cc2dd1184a66"
