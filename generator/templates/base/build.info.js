@@ -59,11 +59,13 @@ if (fsExistsSync('.git/'+ref)) {
   process.env.VUE_APP_BUILD_REPO_VER = gitCommitVersion
 }
 
-console.log('------------------------------------------------------------')
-console.log('|                        BUILD INFO                        |')
-console.log('------------------------------------------------------------')
-console.log('building branch :', branch)
-console.log('building time   :', process.env.VUE_APP_BUILD_TIME)
-console.log('building version:', process.env.VUE_APP_BUILD_VER)
-console.log('repo hash       :', gitVersion)
-console.log('------------------------------------------------------------\n')
+console.log('--------------------------------------------------------------')
+console.log('|                        BUILD INFO                          |')
+console.log('--------------------------------------------------------------')
+console.log('| project name     |', pj.name)
+console.log('| building branch  |', branch)
+console.log('| building time    |', process.env.VUE_APP_BUILD_TIME)
+console.log('| building version |', process.env.VUE_APP_BUILD_VER)
+console.log('| repo hash        |', gitVersion)
+console.log('| dependencies     |', Object.keys(pj.dependencies).length)
+console.log('--------------------------------------------------------------\n')
