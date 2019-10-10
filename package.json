@@ -1,7 +1,7 @@
 {
   "name": "vue-cli-plugin-pumelo-tea",
   "version": "2.0.2",
-  "description": "Custom templates for Vue CLI 3",
+  "description": "Custom templates for Vue CLI 3 ",
   "main": "index.js",
   "scripts": {},
   "repository": {
