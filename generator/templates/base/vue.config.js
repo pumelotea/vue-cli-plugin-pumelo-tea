@@ -1,4 +1,5 @@
-require("./build.info.js")
+const SquirrelZooBuildPlugin = require('squirrelzoo-build-plugin')
+SquirrelZooBuildPlugin.apply()
 const FileManagerPlugin = require('filemanager-webpack-plugin')
 let plugins=[]
 

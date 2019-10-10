@@ -56,7 +56,8 @@ function addDependencies(api) {
       "filemanager-webpack-plugin": "^2.0.5",
       "stylus": "^0.54.5",
       "stylus-loader": "^3.0.2",
-      "vue-template-compiler": "^2.5.21"
+      "vue-template-compiler": "^2.5.21",
+      "squirrelzoo-build-plugin": "^1.0.0"
     }
   })
 }
