@@ -47,6 +47,7 @@ function addDependencies(api) {
       "vuex": "^3.0.1"
     },
     devDependencies: {
+      "@babel/polyfill": "^7.6.0",
       "@vue/cli-plugin-babel": "^4.0.4",
       "@vue/cli-plugin-eslint": "^4.0.4",
       "@vue/cli-service": "^4.0.4",
