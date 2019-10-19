@@ -1,5 +1,5 @@
 const SquirrelZooBuildPlugin = require('squirrelzoo-build-plugin')
-SquirrelZooBuildPlugin.apply()
+SquirrelZooBuildPlugin.apply('vue-cli-plugin-pumelo-tea')
 const FileManagerPlugin = require('filemanager-webpack-plugin')
 let plugins=[]
 

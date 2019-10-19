@@ -57,7 +57,7 @@ function addDependencies(api) {
       "stylus": "^0.54.5",
       "stylus-loader": "^3.0.2",
       "vue-template-compiler": "^2.5.21",
-      "squirrelzoo-build-plugin": "^1.0.0",
+      "squirrelzoo-build-plugin": "^1.0.1",
       "babel-plugin-transform-remove-console": "^6.9.4"
     }
   })
