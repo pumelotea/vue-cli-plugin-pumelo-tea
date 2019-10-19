@@ -47,9 +47,9 @@ function addDependencies(api) {
       "vuex": "^3.0.1"
     },
     devDependencies: {
-      "@vue/cli-plugin-babel": "^3.5.0",
-      "@vue/cli-plugin-eslint": "^3.5.0",
-      "@vue/cli-service": "^3.5.0",
+      "@vue/cli-plugin-babel": "^4.0.4",
+      "@vue/cli-plugin-eslint": "^4.0.4",
+      "@vue/cli-service": "^4.0.4",
       "babel-eslint": "^10.0.1",
       "eslint": "^5.8.0",
       "eslint-plugin-vue": "^5.0.0",
