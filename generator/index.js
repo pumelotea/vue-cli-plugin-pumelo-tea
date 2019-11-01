@@ -26,11 +26,12 @@ function renderFiles(api, opts) {
   }
 }
 
-function addDependencies(api) {
+function addDependencies(api,projectName) {
   api.extendPackage({
     scripts: {
       "build-prod": "vue-cli-service build",
       "build-test": "vue-cli-service build --mode=test --dest=dist-test",
+      "build-docker": "vue-cli-service build && docker build . -t "+projectName+" && docker save > "+projectName+".img "+projectName+":latest"
     },
     dependencies: {
       "axios": "^0.18.0",
@@ -72,6 +73,6 @@ module.exports = (api, options, rootOpts) => {
   options.projectName = api.generator.originalPkg.name
 
 
-  addDependencies(api)
+  addDependencies(api,api.generator.originalPkg.name)
   renderFiles(api, options)
 }
