@@ -22,6 +22,25 @@ vue add pumelo-tea //该插件会替换掉并注入文件
 3. 构建后自动打包为zip
 4. 预设编译命令`build-prod`,`build-test`
 
+
+### 常见问题
+
+#### 如何扩展自定义构建命令
+以下以alpha版本作为例子
+在package.json中添加
+```
+"build-alpha": "vue-cli-service build --mode alpha --dest=dist-alpha"
+```
+在项目根目录下新建一个
+`.env.alpha`,内容如下：  
+```
+NODE_ENV = 'alpha'
+```
+还可以编写其他的变量，请查看文档。
+
+
+
+
 ### 联系我&关注我
 
 https://www.squirrelzoo.com/archives/1283
