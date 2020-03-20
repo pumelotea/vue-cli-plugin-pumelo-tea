@@ -5,17 +5,15 @@ import router from '@/router'
 //请求前置拦截
 axios.interceptors.request.use(config => {
 
-
-  // 通用覆盖
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.VUE_APP_API_SOURCE === 'dev') {
     config.baseURL = window.api.dev.server
   }
 
-  if (process.env.NODE_ENV === 'production') {
-    config.baseURL = window.api.prod.server
+  if (process.env.VUE_APP_API_SOURCE === 'test') {
+    config.baseURL = window.api.test.server
   }
 
-  if (process.env.NODE_ENV === 'test') {
+  if (process.env.VUE_APP_API_SOURCE === 'prod') {
     config.baseURL = window.api.prod.server
   }
 
