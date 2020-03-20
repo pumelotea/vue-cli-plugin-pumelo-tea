@@ -2,7 +2,7 @@
   "useConfigFiles": true,
   "plugins": {
     "vue-cli-plugin-pumelo-tea": {
-      "version": "^2.3.0",
+      "version": "^2.3.1",
       "replaceTemplates": true
     }
   }
