@@ -24,7 +24,7 @@ function renderFiles(api, opts) {
     fs.closeSync(file4);
 
     let file5 = fs.openSync(`${api.resolve('src')}/../.gitignore`, 'w');
-    fs.writeSync(file5,  fs.readFileSync(__dirname+'/templates/base/.gitignore','utf-8'));
+    fs.writeSync(file5,  fs.readFileSync(__dirname+'/templates/base/gitignore','utf-8'));
     fs.closeSync(file5);
 
     let file6 = fs.openSync(`${api.resolve('src')}/../.browserslistrc`, 'w');
