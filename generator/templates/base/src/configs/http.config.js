@@ -4,18 +4,8 @@ import router from '@/router'
 
 //请求前置拦截
 axios.interceptors.request.use(config => {
-
-  if (process.env.VUE_APP_API_SOURCE === 'dev') {
-    config.baseURL = window.api.dev.server
-  }
-
-  if (process.env.VUE_APP_API_SOURCE === 'test') {
-    config.baseURL = window.api.test.server
-  }
-
-  if (process.env.VUE_APP_API_SOURCE === 'prod') {
-    config.baseURL = window.api.prod.server
-  }
+  config.timeout = 30 * 1000
+  config.baseURL = window.api[process.env.VUE_APP_API_SOURCE].server
 
   // 配置授权头 【样例】
   // if (config.url.replace(config.baseURL, '') !== '/login') {

@@ -21,6 +21,8 @@ vue add pumelo-tea //该插件会替换掉并注入文件
 2. 构建信息（版本号，git hash等）自动编入构建结果,插入`index.html`
 3. 构建后自动打包为zip
 4. 预设编译命令`build-prod`,`build-test`
+5. 预设docker配置
+6. 预设drone配置
 
 
 ### 常见问题

@@ -31,7 +31,13 @@ function renderFiles(api, opts) {
     fs.writeSync(file6,  fs.readFileSync(__dirname+'/templates/base/.browserslistrc','utf-8'));
     fs.closeSync(file6);
 
+    let file7 = fs.openSync(`${api.resolve('src')}/../.prettierrc`, 'w');
+    fs.writeSync(file7,  fs.readFileSync(__dirname+'/templates/base/.prettierrc','utf-8'));
+    fs.closeSync(file7);
 
+    let file8 = fs.openSync(`${api.resolve('src')}/../.drone.yml`, 'w');
+    fs.writeSync(file8,  fs.readFileSync(__dirname+'/templates/base/.drone.yml','utf-8'));
+    fs.closeSync(file8);
   })
 
   const filesToDelete = [
@@ -61,7 +67,6 @@ function addDependencies(api,projectName) {
       "build": "vue-cli-service build --mode prod --dest=dist-prod",
       "build-test": "vue-cli-service build --mode test --dest=dist-test",
       "build-prod": "vue-cli-service build --mode prod --dest=dist-prod",
-      "build-docker": "vue-cli-service build --mode prod --dest=dist-prod && docker build . -t "+projectName+" && docker save > "+projectName+".img "+projectName+":latest",
       "lint": "vue-cli-service lint"
     },
     dependencies: {

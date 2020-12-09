@@ -1,0 +1,115 @@
+kind: pipeline
+name: default
+type: docker
+# 使用前请进行自行配置参数
+
+clone:
+  disable: true
+
+steps:
+  - name: clone
+    pull: if-not-exists
+    image: alpine/git
+    volumes:
+      - name: sshkeys
+        path: /root/.ssh
+    commands:
+      - git clone $DRONE_GIT_SSH_URL .
+      - git checkout $DRONE_COMMIT
+
+# 关闭代码分析，提高构建效率
+  - name: code-analysis
+    pull: if-not-exists
+    image: aosapps/drone-sonar-plugin
+    settings:
+      sonar_host: http://10.10.0.14:9002
+      sonar_token: 28896e8b058a2fa4906ea4bb1bba3e54015a32e6
+      showProfiling: true
+
+  - name: restore-cache
+    pull: if-not-exists
+    image: drillster/drone-volume-cache
+    volumes:
+      - name: cache
+        path: /cache
+    settings:
+      restore: true
+      mount:
+        - ./node_modules
+
+  - name: build-front
+    pull: if-not-exists
+    image: node
+    settings:
+      mirror: https://docker.mirrors.ustc.edu.cn
+    commands:
+      - yarn install
+      - yarn run build
+
+  - name: rebuild-cache
+    pull: if-not-exists
+    image: drillster/drone-volume-cache
+    volumes:
+      - name: cache
+        path: /cache
+    settings:
+      rebuild: true
+      mount:
+        - ./node_modules
+
+  - name: build-image
+    pull: if-not-exists
+    image: plugins/docker
+    settings:
+      mirror: https://docker.mirrors.ustc.edu.cn
+      dockerfile: docker/test/Dockerfile
+      repo: 10.10.0.14:5000/namespace/project-name
+      registry: 10.10.0.14:5000
+      tags: ${DRONE_BUILD_NUMBER}
+      username: username
+      password: password
+      insecure: true
+
+  - name: deploy-container
+    pull: if-not-exists
+    image: appleboy/drone-ssh
+    settings:
+      host: 10.10.0.27
+      username: username
+      password: password
+      port: 22
+      script:
+        - echo start update container
+        - echo login registry 10.10.0.14:5000
+        - docker login -u username -p password 10.10.0.14:5000
+        - docker pull 10.10.0.14:5000/namespace/project-name:${DRONE_BUILD_NUMBER}
+        - list=$(docker ps -a| grep namespace-project-name* | awk '{print $1}')
+        - test "$list" = "" && echo "none namespace-project-name containers running" || docker stop $list
+        - docker run -d -p8080:8080 -v /data/happyboot-ui/system-web:/logs --privileged=true  --name=namespace-project-name-${DRONE_BUILD_NUMBER} 10.10.0.14:5000/namespace/project-name:${DRONE_BUILD_NUMBER}
+
+  - name: dingtalk
+    pull: if-not-exists
+    image: guoxudongdocker/drone-dingtalk
+    settings:
+      token: 钉钉机器人token
+      type: markdown
+      message_color: true
+      message_pic: true
+      sha_link: true
+    when:
+      status: [failure, success]
+
+trigger:
+  branch:
+    - master
+  event:
+    - push
+
+
+volumes:
+  - name: cache
+    host:
+      path: /tmp/cache
+  - name: sshkeys
+    host:
+      path: /root/.ssh
